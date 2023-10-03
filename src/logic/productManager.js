@@ -108,12 +108,4 @@ class ProductManager{
     }
     
 }
-
-//---------------------------------------------------------------------
-// Utilización
-// Creación del manager
-let manager = new ProductManager('json/productosDesafio2.json');
-manager.loadProducts(); // Precarga de productos
-//-------------------------------------------
-
 export default ProductManager;
