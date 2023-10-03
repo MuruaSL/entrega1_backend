@@ -38,3 +38,24 @@ try {
     res.status(404).json({ error: 'Producto no encontrado' });
 }
 };
+
+export const updateProduct = (req, res) => {
+    const productId = parseInt(req.params.pid); // Obtener el ID del producto de los parámetros de la ruta
+    const { title, description, price, thumbnails, code, stock } = req.body; // Extraer los valores a actualizar por body
+    
+    try {
+        // Llama a una función en tu ProductManager que actualice el producto por su ID
+        const updatedProduct = productManager.updateProduct(productId, {
+            title,
+            description,
+            price,
+            thumbnails,
+            code,
+            stock
+        });
+        
+        res.json(updatedProduct);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};

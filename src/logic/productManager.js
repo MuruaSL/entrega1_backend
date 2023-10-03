@@ -72,8 +72,30 @@ class ProductManager{
             }
         }
     }
-
+    //actualiza un producto especificado obteniendo los datos por body
+    updateProduct(productId, updatedFields) {
+        //primero carga el array de productos porque sino en postman jamas pasa por esa secuencia y no se puede actualizar 
+        this.loadProducts()
+        // Verifica si el producto con el ID especificado existe
+        const productIndex = ProductManager.products.findIndex((product) => product.id == productId);
+        if (productIndex === -1) {
+            throw new Error("Producto no encontrado");
+        }
     
+        // Actualiza los campos del producto con los valores proporcionados
+        const updatedProduct = { ...ProductManager.products[productIndex], ...updatedFields };
+        
+        // Reemplaza el producto antiguo con el producto actualizado en el arreglo de productos
+        ProductManager.products[productIndex] = updatedProduct;
+    
+        // Actualiza el archivo JSON con los productos actualizados
+        this.updateProducts();
+    
+        return updatedProduct;
+    }
+    
+
+    //actualiza el array
     updateProducts() {
         fs.writeFileSync(this.path, JSON.stringify(ProductManager.products, null, 2), 'utf-8');
     }

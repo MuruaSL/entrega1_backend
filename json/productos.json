@@ -1,20 +1,20 @@
 [
   {
-    "title": "Producto 2",
-    "description": "Descripción del producto 2",
-    "price": 2900,
+    "title": "título actualizado",
+    "description": "descripción actualizada",
+    "price": 3500,
     "thumbnail": "imagen2.jpg",
-    "code": "52321a2gasd",
-    "stock": 15,
+    "code": "AII2023",
+    "stock": 50,
     "id": 2
   },
   {
-    "title": "Producto 2",
-    "description": "Descripción del producto 2",
-    "price": 2900,
+    "title": "título actualizado",
+    "description": "descripción actualizada",
+    "price": 3500,
     "thumbnail": "imagen2.jpg",
-    "code": "52g213aasd",
-    "stock": 15,
+    "code": "AII2020",
+    "stock": 55,
     "id": 3
   },
   {
@@ -27,12 +27,12 @@
     "id": 4
   },
   {
-    "title": "Producto 1",
-    "description": "Descripción del producto 1",
-    "price": 1500,
+    "title": "Nuevo título actualizado",
+    "description": "Nueva descripción actualizada",
+    "price": 200,
     "thumbnail": "imagen1.jpg",
-    "code": "282a12g1asd",
-    "stock": 10,
+    "code": "A22A456",
+    "stock": 15,
     "id": 5
   },
   {
