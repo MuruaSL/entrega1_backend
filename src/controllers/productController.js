@@ -59,3 +59,14 @@ export const updateProduct = (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+
+export const deleteProduct = (req, res) => {
+    const productId = parseInt(req.params.pid); // Obtener el ID del producto de los parámetros de la ruta
+    
+    try {
+        productManager.deleteProduct(productId)
+        res.json("se elimino el producto de id "+`${productId}`)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
