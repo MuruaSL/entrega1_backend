@@ -20,9 +20,9 @@ export const getAllProducts = (req, res) => {
 
 
 export const createProduct = (req, res) => {
-const { title, description, price, thumbnail, code, stock } = req.body;
+const { title, description, price, code,stock,thumbnails } = req.body;
 try {
-    const newProduct = productManager.addProduct(title, description, price, thumbnail, code, stock);
+    const newProduct = productManager.addProduct( title, description, price, code,stock,thumbnails);
     res.status(201).json(newProduct);
 } catch (error) {
     res.status(400).json({ error: error.message });
@@ -38,13 +38,3 @@ try {
     res.status(404).json({ error: 'Producto no encontrado' });
 }
 };
-
-export const getProductWhitLimit = (req, res) => {
-    const limit = parseInt(req.params.limit);
-    try {
-        const product = productManager.getProductById(productId);
-        res.json(product);
-    } catch (error) {
-        res.status(404).json({ error: 'Producto no encontrado' });
-    }
-    };

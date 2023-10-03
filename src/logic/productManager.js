@@ -13,41 +13,45 @@ class ProductManager{
     }
 
     //functions//
-    addProduct(title, description, price, thumbnail, code, stock) {
+    addProduct(title, description, price, code,stock,thumbnails) {
         // Validar que todos los campos sean obligatorios
-        if (!title || !description || !price || !thumbnail || !stock || !code) {
+        if (!title || !description || !price || !code || !stock || !Array.isArray(thumbnails) || thumbnails.length === 0) {
             throw new Error("Todos los campos son obligatorios.");
         }
-        //cargar los productos existentes hasta el momento 
-        this.loadProducts()
+    
+        // Cargar los productos existentes hasta el momento
+        this.loadProducts();
+    
         // Validar que "code" no se repita en el nuevo producto
         const codeExists = ProductManager.products.some((product) => product.code === code);
         if (codeExists) {
             console.log("El código del producto ya existe");
             return; // No devuelve nada en este caso
         }
-        //si el codigo ingresado no existe...
+    
         // Incrementar el lastId para el nuevo producto
         const ultimoId = ProductManager.products.length > 0 ? ProductManager.products[ProductManager.products.length - 1].id : 0;
         ProductManager.lastId = ultimoId + 1;
-
-        // Crear un nuevo producto con un id autoincrementable
+    
+        // Crear un nuevo producto con un id autoincrementable y status true por defecto
         const newProduct = {
+            id: ProductManager.lastId,
             title,
             description,
             price,
-            thumbnail,
+            thumbnail: thumbnails[0], // la primera imagen de thumbnails se setea por defecto 
             code,
             stock,
-            id: ProductManager.lastId
+            status: true, // Establecer status en true por defecto
+            thumbnails,
         };
-
+    
         // Agregar el nuevo producto al arreglo de productos
         ProductManager.products.push(newProduct);
         this.updateProducts();
         return newProduct; // Devuelve el nuevo producto
-        
     }
+    
     
     
     //obtener los productos desde el json
