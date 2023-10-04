@@ -9,7 +9,5 @@ productRouter.post('/', createProduct);
 productRouter.get('/:pid', getProductById);
 productRouter.put('/:pid', updateProduct);
 productRouter.delete('/:pid', deleteProduct);
-// La ruta DELETE /:pid deberá eliminar el 
-// producto con el pid indicado. 
 
 export default productRouter;

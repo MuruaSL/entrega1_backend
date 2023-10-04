@@ -1,18 +1,10 @@
-import express from "express";
-const cartRouter = express.Router() // importo todas las funcionalidades de router
+import express from 'express';
+import { createCart ,getCartById,addToCart} from '../controllers/cartController.js';
 
-const cart =[]
+const cartRouter = express.Router();
 
-cartRouter.get("/", (req,res) =>{
-
-    res.json(cart)
-})
-cartRouter.post("/",(res,req)=>{
-    const newProduct= req.body;
-    cart.push(newProduct);
-    res.status(201).json(newProduct);
-})
-
-export default cartRouter
-// con esto exporto y puedo importarlo en otro archivo
-
+// Rutas para productos
+cartRouter.post('/', createCart);
+cartRouter.get('/:cartId', getCartById);
+cartRouter.post('/:cid/product/:pid', addToCart)
+export default cartRouter;

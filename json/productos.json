@@ -1,4 +1,13 @@
-[
+[ 
+  {
+    "title": "título 1",
+    "description": "descripción 1",
+    "price": 2500,
+    "thumbnail": "imagen5.jpg",
+    "code": "AIIe2023",
+    "stock": 52,
+    "id": 1
+  },
   {
     "title": "título actualizado",
     "description": "descripción actualizada",

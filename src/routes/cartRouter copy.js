@@ -1,23 +1,23 @@
+import express from 'express';
 import CartManager from '../logic/cartManager.js';
 
 const cartManager = new CartManager();
+const cartRouter = express.Router();
 
-// Crea un nuevo carrito
-export const createCart = (req, res) => {
+// Ruta para crear un nuevo carrito
+cartRouter.post('/', (req, res) => { 
     try {
         const { products } = req.body;
-        console.log(products); // Agrega esta línea para verificar los productos en la consola
         const newCart = cartManager.createCart(products);
         res.status(201).json(newCart);
     } catch (error) {
         res.status(500).json({ error: 'Error al crear el carrito' });
     }
-};
+});
 
-
-// Obtiene un carrito por su ID
-export const getCartById = (req, res) => {
-    const cartId = req.params.cartId;
+// Ruta para obtener un carrito por su ID
+cartRouter.get('/:cid', (req, res) => { 
+    const cartId = req.params.cid;
     const cart = cartManager.getCartById(cartId);
 
     if (cart) {
@@ -25,12 +25,12 @@ export const getCartById = (req, res) => {
     } else {
         res.status(404).json({ error: 'Carrito no encontrado' });
     }
-};
+});
 
-// Agrega un producto al carrito
-export const addToCart = (req, res) => {
+// Ruta para agregar un producto al carrito
+cartRouter.post('/:cid/product/:pid', (req, res) => { 
     const cartId = req.params.cid;
-    const productId = parseInt(req.params.pid); // Parsea el ID del producto como un número
+    const productId = req.params.pid;
     const { quantity } = req.body;
 
     try {
@@ -39,4 +39,6 @@ export const addToCart = (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
-};
+});
+
+export default cartRouter;
