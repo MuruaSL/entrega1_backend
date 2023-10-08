@@ -32,10 +32,11 @@ class CartManager {
 
     // Crea un nuevo carrito y lo agrega a la lista
     createCart(products) {
-        console.log(products)
+
         const newCart = {
             id: this.lastCartId + 1, // Incrementa el último ID de carrito
-            products // Lista de productos en el carrito
+            products: products || [] // Lista de productos en el carrito Usa un array vacío si products no está definido
+            
         };
 
         this.carts.push(newCart);
