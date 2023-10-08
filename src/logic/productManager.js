@@ -15,8 +15,8 @@ class ProductManager{
     //functions//
     addProduct(title, description, price, code,stock,thumbnails) {
         // Validar que todos los campos sean obligatorios
-        if (!title || !description || !price || !code || !stock || !Array.isArray(thumbnails) || thumbnails.length === 0) {
-            throw new Error("Todos los campos son obligatorios.");
+        if (!title || !description || !price || !code || !stock ) {
+            throw new Error("Los campos son obligatorios (Salvo thumbnails).");
         }
     
         // Cargar los productos existentes hasta el momento
@@ -26,7 +26,7 @@ class ProductManager{
         const codeExists = ProductManager.products.some((product) => product.code === code);
         if (codeExists) {
             console.log("El código del producto ya existe");
-            return; // No devuelve nada en este caso
+            throw new Error("El código del producto ya existe");
         }
     
         // Incrementar el lastId para el nuevo producto

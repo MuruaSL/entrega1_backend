@@ -1,4 +1,4 @@
-[ 
+[
   {
     "title": "título 1",
     "description": "descripción 1",
@@ -106,6 +106,20 @@
     "thumbnail": "imagen1.jpg",
     "code": "ABC123",
     "stock": 10,
+    "status": true,
+    "thumbnails": [
+      "imagen1.jpg",
+      "imagen2.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Producto de ejemplo",
+    "description": "Descripción del producto",
+    "price": 19.99,
+    "thumbnail": "imagen1.jpg",
+    "code": "AB1C123",
+    "stock": 100,
     "status": true,
     "thumbnails": [
       "imagen1.jpg",
