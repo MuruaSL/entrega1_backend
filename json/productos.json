@@ -1,18 +1,21 @@
 [
   {
-    "title": "título 1",
-    "description": "descripción 1",
-    "price": 2500,
-    "thumbnail": "imagen5.jpg",
-    "code": "AIIe2023",
-    "stock": 52,
-    "id": 1
+    "title": "cambioo de titulo1",
+    "description": "Descripción del producto",
+    "price": 1999,
+    "code": "AaBC123",
+    "stock": 55,
+    "id": 1,
+    "thumbnails": [
+      "imagen1.jpg",
+      "imagen2.jpg"
+    ]
   },
   {
     "title": "título actualizado",
     "description": "descripción actualizada",
     "price": 3500,
-    "thumbnail": "imagen2.jpg",
+    "thumbnails": "imagen2.jpg",
     "code": "AII2023",
     "stock": 50,
     "id": 2
@@ -117,7 +120,6 @@
     "title": "Producto de ejemplo",
     "description": "Descripción del producto",
     "price": 19.99,
-    "thumbnail": "imagen1.jpg",
     "code": "AB1C123",
     "stock": 100,
     "status": true,

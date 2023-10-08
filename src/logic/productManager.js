@@ -74,23 +74,58 @@ class ProductManager{
     }
     //actualiza un producto especificado obteniendo los datos por body
     updateProduct(productId, updatedFields) {
+
         //primero carga el array de productos porque sino en postman jamas pasa por esa secuencia y no se puede actualizar 
         this.loadProducts()
+        // Definir una lista de campos permitidos en tus productos
+        const camposPermitidos = ["title", "description", "price", "thumbnails", "code", "stock", "status"];
         // Verifica si el producto con el ID especificado existe
         const productIndex = ProductManager.products.findIndex((product) => product.id == productId);
         if (productIndex === -1) {
             throw new Error("Producto no encontrado");
         }
-    
+         // Verifica si "code" se va a actualizar
+        if (updatedFields.hasOwnProperty("code")) {
+        // busca en todos los productos
+        const newCode = updatedFields.code;
+        const isCodeDuplicated = ProductManager.products.some((product, index) => {
+            // Verifica si el nuevo código es igual al código de algún otro producto,salvo del actual
+            return index !== productIndex && product.code === newCode;
+        });
+
+        if (isCodeDuplicated) {
+            throw new Error("El código ya existe en otro producto");
+        }
+        }
+        // Verifica si se intenta actualizar el "id"
+
+        if (updatedFields.hasOwnProperty("id") && updatedFields.id !== ProductManager.products[productIndex].id) {
+        throw new Error("No se puede actualizar el campo 'id'");
+        }
+        // Verifica si se intenta actualizar el "id" o cualquier campo que no está en la lista de campos permitidos
+        for (const key in updatedFields) {
+            if (updatedFields.hasOwnProperty(key)) {
+                if (camposPermitidos.includes(key)) {
+                    throw new Error("Uno de los campos indicados no puede ser modificado")
+                }
+            }
+}
         // Actualiza los campos del producto con los valores proporcionados
-        const updatedProduct = { ...ProductManager.products[productIndex], ...updatedFields };
+        const updatedProduct = ProductManager.products[productIndex];
         
+        // Actualiza solo los campos proporcionados en updatedFields
+        for (const key in updatedFields) {
+            if (updatedFields.hasOwnProperty(key)) {
+                updatedProduct[key] = updatedFields[key];
+            }
+        }
+
         // Reemplaza el producto antiguo con el producto actualizado en el arreglo de productos
         ProductManager.products[productIndex] = updatedProduct;
-    
+
         // Actualiza el archivo JSON con los productos actualizados
         this.updateProducts();
-    
+
         return updatedProduct;
     }
     
